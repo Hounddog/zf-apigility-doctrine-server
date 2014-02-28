@@ -229,6 +229,8 @@ class DoctrineResource extends AbstractResourceListener
 
         // Hydrate entity
         $hydrator->hydrate($patchedData, $entity);
+
+        $this->getObjectManager()->persist($entity);
         $this->getObjectManager()->flush();
 
         return $entity;
@@ -261,6 +263,8 @@ class DoctrineResource extends AbstractResourceListener
 
         $hydrator = $this->getHydrator();
         $hydrator->hydrate((array)$data, $entity);
+
+        $this->getObjectManager()->persist($entity);
         $this->getObjectManager()->flush();
 
         return $entity;
